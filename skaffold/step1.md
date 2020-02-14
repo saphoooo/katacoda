@@ -54,7 +54,7 @@ Quelques précisions sur la syntaxe du Dockerfile :
 
 ### Attention
 
-> Vérifiez que le copié-collé dans `nano` a bien pris les retours à la ligne.
+> Vérifiez que le copié-collé dans `nano` a bien pris les retours à la ligne (ou n'en a pas ajouté là où nous n'en voulons pas).
 
 Notre Dockerfile étant prêt, il est temps de passer au build :
 
@@ -72,7 +72,7 @@ Une fois l'image créée, il ne nous reste plus qu'à essayer de l'exécuter :
 
 Avec l'argument `-d`, nous envoyons notre conteneur en background. Vérifions s'il tourne correctement :
 
-`docker ps`{{execute}}
+`docker ps -f --name=loto`{{execute}}
 
 `docker logs loto`{{execute}}
 
