@@ -1,4 +1,4 @@
-## Peu mieux faire
+## Peut mieux faire
 
 Si nous y regardons de plus prêt, notre Dockerfile est loin d'être parfait : bien que notre code y tourne comme un charme, l'image que nous avons produit ne fait pas moins de 805MB... Si le but d'un conteneur est d'être léger, ici nous avons clairement manqué le pas.
 

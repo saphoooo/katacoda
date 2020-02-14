@@ -52,6 +52,14 @@ Quelques précisions sur la syntaxe du Dockerfile :
 
 - Finalement **CMD** est la commande que nous utilisons lorsque nous démarrons le conteneur.
 
+### Astuce
+
+> Les arguments de CMD peuvent être écris de deux manières :
+
+> `CMD /loto` dans ce cas, la commande sera exécutée par le shell : `/bin/sh -c /loto`
+
+> `CMD ["/loto"]`, la commande sera exécuté directement.
+
 ### Attention
 
 > Vérifiez que le copié-collé dans `nano` a bien pris les retours à la ligne (ou n'en a pas ajouté là où nous n'en voulons pas).
