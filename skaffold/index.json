@@ -26,6 +26,11 @@
         "text": "step5.md"
       }
     ],
+    "assets": {
+      "host01": [
+          {"file": "main.go", "target": "/root"}
+      ]
+    },
     "intro": {
       "text": "intro.md"
     },
