@@ -1,4 +1,3 @@
-# LeS 12 SiNGeS
 ![Les 12 Singes Logo](assets/les12singes.png)
 
 ## Skaffold ?
