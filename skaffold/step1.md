@@ -33,22 +33,24 @@ Essayons de faire ça de manière empirique :
 ```
 FROM golang
 
-ADD main.go
+ADD main.go .
 
-RUN GCO_ENABLE=0 go build -o loto
+RUN go get -u github.com/pkg/errors
 
-CMD loto
+RUN GCO_ENABLE=0 go build -o /loto
+
+CMD /loto
 ```{{copy}}
 
 Quelques précisions sur la syntaxe du Dockerfile :
 
 - Un Dockerfile commence toujours par l'argument **FROM**, il permet de définir l'image de base que nous souhaitons utiliser, dans notre cas `golang`.
 
-- ADD permet de copier notre fichier source dans l'image.
+- **ADD** permet de copier notre fichier source dans l'image.
 
-- RUN nous sert à exécuter une commande.
+- **RUN** nous sert à exécuter une commande.
 
-- Finalement CMD est la commande que nous utilisons lorsque nous démarrons le conteneur.
+- Finalement **CMD** est la commande que nous utilisons lorsque nous démarrons le conteneur.
 
 ### Attention
 
@@ -64,3 +66,14 @@ Notre Dockerfile étant prêt, il est temps de passer au build :
 
 - Enfin le `.` désigne le chemin où se trouve notre Dockerfile.
 
+Une fois l'image créée, il ne nous reste plus qu'à essayer de l'exécuter :
+
+`docker run -d --name loto loto`{{execute}}
+
+Avec l'argument `-d`, nous envoyons notre conteneur en background. Vérifions s'il tourne correctement :
+
+`docker ps`{{execute}}
+
+`docker logs loto`{{execute}}
+
+Et ça tourne !
