@@ -40,8 +40,27 @@ RUN GCO_ENABLE=0 go build -o loto
 CMD loto
 ```{{copy}}
 
-Nous allons utiliser `minikube` pour le build de l'image :
+Quelques précisions sur la syntaxe du Dockerfile :
 
-`eval $(minikube docker-env)`{{execute}}
+- Un Dockerfile commence toujours par l'argument **FROM**, il permet de définir l'image de base que nous souhaitons utiliser, dans notre cas `golang`.
+
+- ADD permet de copier notre fichier source dans l'image.
+
+- RUN nous sert à exécuter une commande.
+
+- Finalement CMD est la commande que nous utilisons lorsque nous démarrons le conteneur.
+
+### Attention
+
+> Vérifiez que le copié-collé dans `nano` a bien pris les retours à la ligne.
+
+Notre Dockerfile étant prêt, il est temps de passer au build :
 
 `docker build -t loto .`{{execute}}
+
+- Pour créer l'image, nous exécutons `docker build`, ce qui est somme toute logique.
+
+- L'argument `-t` (ou --tag) permet de donner un nom à l'image, ainsi qu'un tag, sous la forme de `nom:tag`. Ici, comme nous ne précisons le précisons pas, le tag `latest` sera ajouté à notre image.
+
+- Enfin le `.` désigne le chemin où se trouve notre Dockerfile.
+
