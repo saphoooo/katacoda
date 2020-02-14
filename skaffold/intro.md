@@ -1,4 +1,4 @@
-![Les 12 Singes Logo](assets/les12singes.png)
+![Hyper Singe](assets/hyper-singe.png)
 
 ## Skaffold ?
 
