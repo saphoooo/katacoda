@@ -39,7 +39,7 @@ RUN go get -u github.com/pkg/errors
 
 RUN GCO_ENABLE=0 go build -o /loto
 
-CMD /loto
+CMD ["/loto"]
 ```{{copy}}
 
 Quelques précisions sur la syntaxe du Dockerfile :
@@ -72,7 +72,7 @@ Une fois l'image créée, il ne nous reste plus qu'à essayer de l'exécuter :
 
 Avec l'argument `-d`, nous envoyons notre conteneur en background. Vérifions s'il tourne correctement :
 
-`docker ps -f --name=loto`{{execute}}
+`docker ps -f name=loto`{{execute}}
 
 `docker logs loto`{{execute}}
 
