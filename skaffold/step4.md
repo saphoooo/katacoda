@@ -28,13 +28,15 @@ build:
   - image: loto
     buildpack:
       builder: "cloudfoundry/cnb:tiny"
-```
+```{{copy}}
 
 Afin que buildpack puisse reconnaître le runtime que nous utilisons (ici Go), nous devons générer le fichier de dépendances.
 
 `cd ..`{{execute}} 
 
 `go mod init loto`{{execute}}
+
+`mv go.mod loto/`{{execute}}
 
 `cd loto`{{execute}}
 
