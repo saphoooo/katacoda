@@ -10,7 +10,7 @@ Ensuite, initialisons skaffold :
 
 Et validez la configuration.
 
-Nous allons maintenant l'éditer afin d'utiliser buildpack au lieu de Dockerfile. C'est très simple, remplacer la patie build
+Nous allons maintenant l'éditer afin d'utiliser buildpack au lieu de Dockerfile. C'est très simple, remplacer dans le fichier `skaffold.yaml` la patie build
 
 ```
 build:
@@ -21,6 +21,7 @@ build:
 par celle-ci
 
 ```
+build:
   tagPolicy:
     sha256: {}
   artifacts:
@@ -29,7 +30,15 @@ par celle-ci
       builder: "cloudfoundry/cnb:tiny"
 ```
 
-C'est tout. Prêt à lancer un déploiement ?
+Afin que buildpack puisse reconnaître le runtime que nous utilisons (ici Go), nous devons générer le fichier de dépendances.
+
+`cd ..`{{execute}} 
+
+`go mod init loto`{{execute}}
+
+`cd loto`{{execute}}
+
+Maintenant noous sommes prêt à lancer notre déploiement !
 
 `skaffold run`{{execute}}
 
