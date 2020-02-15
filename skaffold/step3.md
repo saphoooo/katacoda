@@ -60,6 +60,15 @@ spec:
 
 Ici nous avons remplacé toutes les occurences de nginx par loto, et passé le nombre de réplicas à 1, rien de plus.
 
+Malheureusement, dans le cas présent, nous n'avons nul moyen de déployer notre application : l'image que nous avons créée est locale à notre machine, et minikube n'y a pas accès.
+
+Quelles possibilité cela nous laisse-t-il ?
+
+- Pousser l'image dans une Registry publique (Dockerhub.io, gcr.io, quay.io, ...) ou privée pour pouvoir y accéder depuis minikube ; pas génial pour faire de l'expérimentation locale.
+- Utiliser les [Buildpacks](https://buildpacks.io/). C'est de loin la solution que j'affectionne le plus : non seuelement nous allons pouvoir créer notre image directement dans minikube, mais en plus nous allons pouvoir nous passer du Dockerfile !
+
+Vous ne me croyez pas ?
+---
 A présent, tentons de le déployer :
 
 `kubectl apply -f deploiement-loto.yaml`{{execute}}

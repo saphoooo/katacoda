@@ -20,7 +20,7 @@ Tout d'abord, mettons par convention notre code dans un répertoire portant le n
 
 `mkdir loto`{{execute}}
 
-`mv main.go loto`{{execute}}
+`cp main.go loto`{{execute}}
 
 `cd loto`{{execute}}
 
