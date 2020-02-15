@@ -68,26 +68,3 @@ Quelles possibilité cela nous laisse-t-il ?
 - Utiliser les [Buildpacks](https://buildpacks.io/). C'est de loin la solution que j'affectionne le plus : non seuelement nous allons pouvoir créer notre image directement dans minikube, mais en plus nous allons pouvoir nous passer du Dockerfile !
 
 Vous ne me croyez pas ?
----
-A présent, tentons de le déployer :
-
-`kubectl apply -f deploiement-loto.yaml`{{execute}}
-
-`curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.3.1/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin`{{execute}}
-
-```
-apiVersion: skaffold/v2alpha3
-kind: Config
-metadata:
-  name: loto
-build:
-  artifacts:
-  - image: loto
-    buildpack:
-      builder: "heroku/buildpacks"
-deploy:
-  kubectl:
-    manifests:
-    - loto-deploy.yaml
-```{{copy}}
-

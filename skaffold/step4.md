@@ -1,13 +1,11 @@
 C'est le moment où skaffold entre en jeu.
 
-Repenons depuis le début : nous allons créer un second répertoire :
+Commençons pas télécharger skaffold :
 
-`cd ~`{{execute}}
+`curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.3.1/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin`{{execute}}
 
-`mkdir skaffold`
+Ensuite, initialisons skaffold :
 
-`cp main.go skaffold`
+`skaffold init`{{execute}}
 
-`cd skaffold`
-
-`skaffold init --skip-build=false`{{execute}}
+Validez la configuration.
