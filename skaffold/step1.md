@@ -54,11 +54,11 @@ Quelques précisions sur la syntaxe du Dockerfile :
 
 ### Astuce
 
-> Les arguments de CMD peuvent être écris de deux manières :
+> Les arguments de **CMD** peuvent être écris de deux manières :
 
 > `CMD /loto` dans ce cas, la commande sera exécutée par le shell : `/bin/sh -c /loto`
 
-> `CMD ["/loto"]`, la commande sera exécuté directement.
+> `CMD ["/loto"]`, le binaire sera exécuté directement.
 
 ### Attention
 
@@ -70,7 +70,7 @@ Notre Dockerfile étant prêt, il est temps de passer au build :
 
 - Pour créer l'image, nous exécutons `docker build`, ce qui est somme toute logique.
 
-- L'argument `-t` (ou --tag) permet de donner un nom à l'image, ainsi qu'un tag, sous la forme de `nom:tag`. Ici, comme nous ne précisons le précisons pas, le tag `latest` sera ajouté à notre image.
+- L'argument `-t` (ou `--tag`) permet de donner un nom à l'image, ainsi qu'un tag, sous la forme `nom:tag`. Ici, comme nous ne le précisons pas, le tag `latest` est ajouté à notre image.
 
 - Enfin le `.` désigne le chemin où se trouve notre Dockerfile.
 

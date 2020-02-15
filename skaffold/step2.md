@@ -1,4 +1,4 @@
-## Peut mieux faire
+## Un peu de refactoring
 
 Si nous y regardons de plus prêt, notre Dockerfile est loin d'être parfait : bien que notre code y tourne comme un charme, l'image que nous avons produit ne fait pas moins de 805MB... Si le but d'un conteneur est d'être léger, ici nous avons clairement manqué le pas.
 
@@ -20,6 +20,41 @@ Corrigeons cela.
 
 ## Multistage build
 
-Afin d'avoir une image plus petite, nous avons la possibilité de créer notre binaire dans un conteneur (qui a tous les outils nécessaire), et d'envoyer le resultat dans un autre conteneur qui ne contiendra que notre binaire.
+Afin d'avoir une image plus petite, nous avons la possibilité de créer notre binaire dans un conteneur (qui a tous les outils nécessaire), et d'envoyer ce resultat dans un autre conteneur qui ne contiendra que notre binaire.
 
-Afin de garantir à notre image d'être toujours la même, nous allons prendre une version précise de golang et de alpine linux (que nous utilisons)
+Afin de garantir à notre image d'être toujours la même, nous allons prendre une version précise de golang. Puisque notre binaire est statically-linked, nous allons utiliser `scratch` pour la seconde image ; c'est un image particulière qui ne contient rien.
+
+Modifions notre Dockerfile comme suit :
+
+```
+FROM golang:1.13.7-stretch as builder
+
+COPY main.go .
+
+RUN go get -u github.com/pkg/errors
+RUN CGO_ENABLED=0 go build -o /app main.go
+
+FROM scratch
+CMD ["./app"]
+COPY --from=builder /app .
+```{{copy}}
+
+Puis répétons d'étape du build :
+
+`docker build -t loto .`{{execute}}
+
+Un petit coup d'oeil à la taille de l'image nous apprend qu'elle ne fait plus que 2MB, ce qui représente la taille de notre binaire compiler.
+
+Supprimons notre ancien conteneur :
+
+`docker rm -f loto`{{execute}}
+
+Nous sommes obligé d'utiliser l'argument `-f` pour forcer la suppression du conteneur, car il est encore en cours d'exécution.
+
+`docker run -d --name loto loto`{{execute}}
+
+`docker ps -f name=loto`{{execute}}
+
+`docker logs loto`{{execute}}
+
+Cette fois notre image est prête.
