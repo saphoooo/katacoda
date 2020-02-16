@@ -1,6 +1,6 @@
 ## Kubernetes
 
-Maintenant que notre image est prête, il est temps de la déployer dans Kubernetes.
+Il est temps de déployer notre application dans Kubernetes.
 
 Commençons par un peu de ménage :
 
@@ -8,7 +8,7 @@ Commençons par un peu de ménage :
 
 `docker image prune`{{execute}}
 
-Pour déployer notre image, il faut écrire un fichier yaml de déploiement. En se rendant sur la page de [documentation de Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), nous pouvons trouver un exemple de déploiement :
+Pour déployer notre image, il faut écrire un fichier de déploiement en yaml. En se rendant sur la [documentation de Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), nous pouvons trouver un exemple de déploiement :
 
 ```
 apiVersion: apps/v1
@@ -34,7 +34,7 @@ spec:
         - containerPort: 80
 ```
 
-Nous allons le modifier pour nos besoin. Créez le fichier `deploiement-loto.yaml` pour y placer le contenu suivant :
+Nous allons modifier ce fichier pour nos besoin. Créez le fichier `deploiement-loto.yaml` pour y placer le contenu suivant :
 
 ```
 apiVersion: apps/v1
@@ -60,11 +60,11 @@ spec:
 
 Ici nous avons remplacé toutes les occurences de nginx par loto, et passé le nombre de réplicas à 1, rien de plus.
 
-Malheureusement, dans le cas présent, nous n'avons nul moyen de déployer notre application : l'image que nous avons créée est locale à notre machine, et minikube n'y a pas accès.
+Ici nous sommes confronté à un problème : notre image est locale à la machine, et minikube ne peut pas accéder aux images de notre machine...
 
-Quelles possibilité cela nous laisse-t-il ?
+Quelles possibilités cela nous laisse-t-il ?
 
-- Pousser l'image dans une Registry publique (Dockerhub.io, gcr.io, quay.io, ...) ou privée pour pouvoir y accéder depuis minikube ; pas génial pour faire de l'expérimentation locale.
-- Utiliser les [Buildpacks](https://buildpacks.io/). C'est de loin la solution que j'affectionne le plus : non seuelement nous allons pouvoir créer notre image directement dans minikube, mais en plus nous allons pouvoir nous passer du Dockerfile !
+- Pousser l'image dans une Registry publique (dockerhub.io, gcr.io, quay.io, ...) ou privée pour pouvoir y accéder depuis minikube ; pas génial pour faire de l'expérimentation locale.
+- Utiliser les [Buildpacks](https://buildpacks.io/). C'est de loin la solution que j'affectionne le plus : non seuelement nous allons pouvoir créer notre image directement dans minikube, mais en plus nous allons pouvoir nous oter la peine d'avoir à créer un Dockerfile.
 
 Vous ne me croyez pas ?
