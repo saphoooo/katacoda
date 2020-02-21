@@ -63,12 +63,6 @@ build:
 EOF
 ```{{execute}}
 
-Comme à l'accoutumé, il faut créer un fichier `go.mod` afin de permettre aux buildpacks de reconnaître le langage que nous utilisons :
-
-```
-go mod init myapp
-```{{execute}}
-
 A ce stade, Skaffold a maintenant toutes ce qu'il faut pour gérer notre build et notre déploiement :
 
 ```

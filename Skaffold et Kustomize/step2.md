@@ -24,18 +24,18 @@ kind: Deployment
 metadata:
   name: myapp
 spec:
+  replicas: 3
   template:
     spec:
-      replicas: 3
       containers:
       - name: myapp
-      resources:
-        requests:
-          memory: "128Mi"
-          cpu: "250m"
-        limits:
-          memory: "256Mi"
-          cpu: "500m"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
         
 EOF
 ```{{execute}}
@@ -104,4 +104,39 @@ Après ces vérifications, passons au déploiement de notre version de productio
 
 ```
 skaffold run -f production.yaml
+```{{execute}}
+
+Constatez-le par vous-même, le fichier de déploiement n'a subit aucune altération :
+
 ```
+cat deployment.yaml
+```{{execute}}
+
+Pourtant, si nous repassons nos commandes maintenant :
+
+```
+kubectl get deployment myapp -ojsonpath={.spec.replicas}
+```{{execute}}
+
+Le nombre de réplicas doit maintenant être à 3.
+
+```
+kubectl get deployment myapp -ojson | jq .spec.template.spec.containers[0].resources
+```{{execute}}
+
+L'output doit maintenant ressembler à ceci :
+
+```
+{
+  "limits": {
+    "cpu": "500m",
+    "memory": "256Mi"
+  },
+  "requests": {
+    "cpu": "250m",
+    "memory": "128Mi"
+  }
+}
+```
+
+Grâce à Kustomize, vous avez personnalisé un déploiement de production, simplement en patchant votre fichier de dev.

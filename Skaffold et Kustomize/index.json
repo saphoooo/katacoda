@@ -16,11 +16,11 @@
     ],
     "assets": {
       "host01": [
-          {"file": "main.go", "target": "/root"}
+          {"file": "main.go", "target": "/root"},
+          {"file": "go.mod", "target": "/root"}
       ]
     },
     "intro": {
-      "courseData": "background.sh",
       "text": "intro.md"
     },
     "finish": {
