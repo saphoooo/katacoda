@@ -26,15 +26,14 @@ spec:
     spec:
       containers:
       - name: myapp
-          image: myapp
-          resources:
+        image: myapp
+        resources:
           requests:
             memory: "64Mi"
             cpu: "100m"
           limits:
             memory: "128Mi"
             cpu: "200m"
-
 EOF
 ```{{execute}}
 
@@ -68,7 +67,7 @@ Comme à l'accoutumé, il faut créer un fichier `go.mod` afin de permettre aux 
 
 ```
 go mod init myapp
-```
+```{{execute}}
 
 A ce stade, Skaffold a maintenant toutes ce qu'il faut pour gérer notre build et notre déploiement :
 
