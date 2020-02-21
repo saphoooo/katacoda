@@ -14,7 +14,13 @@
         "text": "step2.md"
       }
     ],
+    "assets": {
+      "host01": [
+          {"file": "main.go", "target": "/root"}
+      ]
+    },
     "intro": {
+      "courseData": "background.sh",
       "text": "intro.md"
     },
     "finish": {

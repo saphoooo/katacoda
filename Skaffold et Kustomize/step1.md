@@ -1,6 +1,10 @@
 Vous commencez le développement d'une toute nouvelle application révolutionnaire (je vous le souhaite en tout cas), et vous êtes impatient de la voir tourner !
 
+Mais bon, avant toute chose, il faut faire un build du code dans un container, puis le déployé. Fort heureusement, nous avons déjà eu l'occasion d'aborder tout ça dans [Débutez avec Skaffold](Débutez avec Skaffold)[https://www.katacoda.com/saphoooo/scenarios/d%C3%A9butez-avec-skaffold], il ne s'agira donc que d'un rappel.
 
+## Préparation
+
+Pour nous lancer, nous avons besoin de deux-trois choses, et pour commencer, un fichier de déploiement pour Kubernetes :
 
 ```
 cat << EOF >> deployment.yaml
@@ -22,8 +26,7 @@ spec:
     spec:
       containers:
       - name: myapp
-          imagePullPolicy: Always
-          image: docker.io/saphoooo/myapp:dirty
+          image: myapp
           resources:
           requests:
             memory: "64Mi"
@@ -34,6 +37,50 @@ spec:
 
 EOF
 ```{{execute}}
+
+De Skaffold, bien entendu !
+
+```
+curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.4.0/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
+```{{execute}}
+
+Et nous allons de ce pas l'initialiser, faisant un `skip-build` afin de pouvoir le customiser et utiliser les buildpacks.
+
+```
+skaffold init --skip-build
+```{{execute}}
+
+Insérons la partie build à `skaffold.yaml` :
+
+```
+cat << EOF >> skaffold.yaml
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - image: myapp
+    buildpack:
+      builder: "cloudfoundry/cnb:tiny"
+EOF
+```{{execute}}
+
+Comme à l'accoutumé, il faut créer un fichier `go.mod` afin de permettre aux buildpacks de reconnaître le langage que nous utilisons :
+
+```
+go mod init myapp
+```
+
+A ce stade, Skaffold a maintenant toutes ce qu'il faut pour gérer notre build et notre déploiement :
+
+```
+skaffold run
+```{{execute}}
+
+```
+kubectl get po
+```{{execute}}
+
+That's life!
 
 ```
 cat << EOF >> kustomization.yaml
@@ -81,16 +128,4 @@ EOF
 ```
 curl -s "https://raw.githubusercontent.com/\
 kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash && chmod +x kustomize && sudo mv kustomize /usr/local/bin
-```{{execute}}
-
-```
-curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.4.0/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
-```{{execute}}
-
-```
-skaffold run
-```{{execute}}
-
-```
-kubectl get po
 ```{{execute}}

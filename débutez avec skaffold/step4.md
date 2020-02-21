@@ -34,6 +34,8 @@ Afin que buildpack puisse automatiquement reconnaître le runtime que nous utili
 
 `go mod init loto`{{execute}}
 
+`go mod tidy`{{execute}}
+
 Tout les éléments sont maintenant en place, il est temps de se jeter à l'eau :
 
 `skaffold run`{{execute}}
