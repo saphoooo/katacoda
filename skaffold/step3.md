@@ -6,7 +6,7 @@ Commençons par un peu de ménage :
 
 `docker rm -f loto`{{execute}}
 
-`docker image prune`{{execute}}
+`docker image prune -f`{{execute}}
 
 Pour déployer notre image, il faut écrire un fichier de déploiement en yaml. En se rendant sur la [documentation de Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), nous pouvons trouver un exemple de déploiement :
 
@@ -58,7 +58,7 @@ spec:
       - name: loto
         image: loto
 EOF
-```{{copy}}
+```{{execute}}
 
 Ici nous avons remplacé toutes les occurences de nginx par loto, et passé le nombre de réplicas à 1, rien de plus.
 

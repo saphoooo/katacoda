@@ -2,7 +2,7 @@
 
 Le code de l'application est dans *home*:
 
-`ls ~`{{execute}}
+`ls ~/main.go`{{execute}}
 
 C'est une simple application en Go qui génére des grilles de loto.
 
@@ -40,7 +40,7 @@ RUN GCO_ENABLE=0 go build -o /loto
 
 CMD ["/loto"]
 EOF
-```{{copy}}
+```{{execute}}
 
 Quelques précisions sur la syntaxe du Dockerfile :
 

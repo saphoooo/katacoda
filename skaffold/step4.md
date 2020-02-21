@@ -2,7 +2,7 @@ C'est le moment où skaffold entre en jeu.
 
 Tout d'abord, prenons un malin plaisir à supprimer ce Dockerfile comme un vestige du passé :
 
-`rm -fr Dockerfile`
+`rm -fr Dockerfile`{{execute}}
 
 Skaffold, pour faire court, est un petit outil de CI/CD très simple d'accès. Il nous permet, en une seul commande, de faire le build (CI), puis le déploiement (CD) de notre application.
 
@@ -28,7 +28,7 @@ build:
     buildpack:
       builder: "cloudfoundry/cnb:tiny"
 EOF
-```{{copy}}
+```{{execute}}
 
 Afin que buildpack puisse automatiquement reconnaître le runtime que nous utilisons (ici Go), nous devons générer le fichier de dépendances.
 

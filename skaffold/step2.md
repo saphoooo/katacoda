@@ -39,7 +39,7 @@ FROM scratch
 CMD ["./app"]
 COPY --from=builder /app .
 EOF
-```{{copy}}
+```{{execute}}
 
 Puis répétons d'étape du build :
 
