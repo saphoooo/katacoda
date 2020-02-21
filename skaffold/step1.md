@@ -28,9 +28,8 @@ Pour créer une image OCI, il existe à ce jour une grande variété de méthode
 
 Essayons de créer notre image de manière empirique :
 
-`nano Dockerfile`{{execute}}
-
 ```
+cat << EOF > Dockerfile
 FROM golang
 
 ADD main.go .
@@ -40,6 +39,7 @@ RUN go get -u github.com/pkg/errors
 RUN GCO_ENABLE=0 go build -o /loto
 
 CMD ["/loto"]
+EOF
 ```{{copy}}
 
 Quelques précisions sur la syntaxe du Dockerfile :
@@ -59,12 +59,6 @@ Quelques précisions sur la syntaxe du Dockerfile :
 > `CMD /loto` dans ce cas, la commande sera exécutée par le shell : `/bin/sh -c /loto`
 
 > `CMD ["/loto"]`, le binaire sera exécuté directement.
-
-### Attention
-
-> Vérifiez que le copié-collé dans `nano` a bien pris les retours à la ligne (ou n'en a pas ajouté là où nous n'en voulons pas).
-
-> Nano est un éditeur de texte simple a utiliser pour ceux qui ne sont pas familiarisé avec `vim` ; je vous recommande tout de même d'utiliser ce dernier si vous avez quelques familiarité avec lui, en n'oubliant pas d'utiliser `:set paste` avant de coller votre code.
 
 Notre Dockerfile étant prêt, il est temps de passer au `build` :
 

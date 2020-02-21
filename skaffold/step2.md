@@ -27,6 +27,7 @@ Afin de garantir à notre image d'être toujours la même, nous allons prendre u
 Modifions notre Dockerfile comme suit :
 
 ```
+cat << EOF > Dockerfile
 FROM golang:1.13.7-stretch as builder
 
 COPY main.go .
@@ -37,6 +38,7 @@ RUN CGO_ENABLED=0 go build -o /app main.go
 FROM scratch
 CMD ["./app"]
 COPY --from=builder /app .
+EOF
 ```{{copy}}
 
 Puis répétons d'étape du build :

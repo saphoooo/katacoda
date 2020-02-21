@@ -37,6 +37,7 @@ spec:
 Nous allons modifier ce fichier pour nos besoin. Créez le fichier `deploiement-loto.yaml` pour y placer le contenu suivant :
 
 ```
+cat << EOF > deploiement-loto.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -56,6 +57,7 @@ spec:
       containers:
       - name: loto
         image: loto
+EOF
 ```{{copy}}
 
 Ici nous avons remplacé toutes les occurences de nginx par loto, et passé le nombre de réplicas à 1, rien de plus.
