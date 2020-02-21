@@ -8,7 +8,7 @@ show_progress()
   local spinstr='\|/-'
   local temp
   while true; do
-    sudo grep -i "done" /root/k8s-start &> /dev/null
+    sudo grep -i "done" /root/.k8s-start &> /dev/null
     if [[ "$?" -ne 0 ]]; then
       temp="${spinstr#?}"
       printf " [%c]  " "${spinstr}"
@@ -24,7 +24,7 @@ show_progress()
   echo "Started"
   echo -n "Waiting for Kubernetes to be ready..."
   while true; do
-    sudo grep -i "condition met" /root/k8s-ready &> /dev/null
+    sudo grep -i "condition met" /root/.k8s-ready &> /dev/null
     if [[ "$?" -ne 0 ]]; then
       temp="${spinstr#?}"
       printf " [%c]  " "${spinstr}"
