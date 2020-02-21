@@ -1,3 +1,4 @@
+#!/bin/bash
 sleep 10
 echo "I'm here" > /root/.background
 while [ ! -f /root/.kube/config ]
