@@ -1,4 +1,4 @@
-A ce stade, tout est parfait pour continuer à développer, mais pas pour passer en production ! En effet, il vous a été demandé de mettre d'autres limites que celles que vous utilisez en dev (la charge sur l'application en production sera plus élevée), mais égalament de passer à 3 réplicas pour en assurer la haute disponibilité.
+A ce stade, tout est parfait pour continuer à développer, mais pas pour passer en production ! En effet, il vous a été demandé de mettre d'autres limites que celles que vous utilisez en dev (la charge sur l'application en production est plus élevée), mais égalament de passer à 3 réplicas pour assurer la haute disponibilité.
 
 Le fichier de déploiement de production doit donc être sensiblement différent de celui que vous utilisez pour la dev... Créer deux fichiers ? Personne, et surtout pas un codeur, n'aime dupliquer ; les dérives sont connues, et vous voulez éviter ça à tout prix.
 
@@ -40,7 +40,7 @@ spec:
 EOF
 ```{{execute}}
 
-Nous avons ensuite besoin d'un fichier pour initialiser Kustomize, et lui dire quel fichier patcher :
+Nous avons ensuite besoin d'un fichier d'initialisation Kustomize, afin qu'il sache quels fichiers patcher, et avec quel patch :
 
 ```
 cat << EOF >> kustomization.yaml
@@ -51,7 +51,7 @@ patches:
 EOF
 ```{{execute}}
 
-Parfait ! Pour finir, nous allons créer un fichier spécifique pour exécuter Skaffold :
+Parfait ! Pour finir, nous allons créer un fichier spécifique pour exécuter Skaffold. Ce fichier reprend la partie `build`, mais prêtez attentions à la partie `deploy` :
 
 ```
 cat << EOF >> production.yaml
@@ -73,7 +73,7 @@ EOF
 
 ## Mise en oeuvre
 
-Tout est en place, c'est le moment de vérité. Tout d'abord vérifions l'application qui est actuellement déployée correspond bien à notre application de dev :
+Tout est en place, c'est le moment de vérité. Tout d'abord vérifions que l'application qui est actuellement déployée correspond bien à notre application de dev :
 
 ```
 kubectl get deployment myapp -ojsonpath={.spec.replicas}
@@ -118,7 +118,7 @@ Pourtant, si nous repassons nos commandes maintenant :
 kubectl get deployment myapp -ojsonpath={.spec.replicas}
 ```{{execute}}
 
-Le nombre de réplicas doit maintenant être à 3.
+Le nombre de réplicas est de 3.
 
 ```
 kubectl get deployment myapp -ojson | jq .spec.template.spec.containers[0].resources

@@ -1,6 +1,6 @@
 Vous commencez le développement d'une toute nouvelle application révolutionnaire (je vous le souhaite en tout cas), et vous êtes impatient de la voir tourner !
 
-Mais bon, avant toute chose, il faut faire un build du code dans un container, puis le déployé. Fort heureusement, nous avons déjà eu l'occasion d'aborder tout ça dans [Débutez avec Skaffold](Débutez avec Skaffold)[https://www.katacoda.com/saphoooo/scenarios/d%C3%A9butez-avec-skaffold], il ne s'agira donc que d'un rappel.
+Mais bon, avant toute chose, il faut faire un build du code dans un container, puis le déployer. Fort heureusement, nous avons déjà eu l'occasion d'aborder tout ça dans [Débutez avec Skaffold](https://www.katacoda.com/saphoooo/scenarios/d%C3%A9butez-avec-skaffold), il ne s'agira donc que d'un rappel.
 
 ## Préparation
 
@@ -63,7 +63,7 @@ build:
 EOF
 ```{{execute}}
 
-A ce stade, Skaffold a maintenant toutes ce qu'il faut pour gérer notre build et notre déploiement :
+A ce stade, Skaffold a maintenant tout ce qu'il faut pour gérer notre build et notre déploiement :
 
 ```
 skaffold run
