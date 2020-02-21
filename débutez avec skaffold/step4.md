@@ -32,13 +32,7 @@ EOF
 
 Afin que buildpack puisse automatiquement reconnaître le runtime que nous utilisons (ici Go), nous devons générer le fichier de dépendances.
 
-`cd ..`{{execute}} 
-
 `go mod init loto`{{execute}}
-
-`mv go.mod loto/`{{execute}}
-
-`cd loto`{{execute}}
 
 Tout les éléments sont maintenant en place, il est temps de se jeter à l'eau :
 

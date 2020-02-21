@@ -1,24 +1,37 @@
+Vous commencez le développement d'une toute nouvelle application révolutionnaire (je vous le souhaite en tout cas), et vous êtes impatient de la voir tourner !
+
+
+
 ```
 cat << EOF >> deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kustomize-test
+  name: myapp
   labels:
-    app: kustomize-test
+    app: myapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kustomize-test
+      app: myapp
   template:
     metadata:
       labels:
-        app: kustomize-test
+        app: myapp
     spec:
       containers:
-      - name: kustomize-test
-        image: not/a/valid/image
+      - name: myapp
+          imagePullPolicy: Always
+          image: docker.io/saphoooo/myapp:dirty
+          resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+
 EOF
 ```{{execute}}
 
@@ -36,13 +49,21 @@ cat << EOF >> patch.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kustomize-test
+  name: myapp
 spec:
   template:
     spec:
+      replicas: 1
       containers:
-      - name: kustomize-test
-        image: docker.io/saphoooo/myapp:dirty
+      - name: myapp
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "250m"
+        limits:
+          memory: "256Mi"
+          cpu: "500m"
+        
 EOF
 ```{{execute}}
 

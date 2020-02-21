@@ -1,0 +1,1 @@
+C'est une fonctionnalité qui n'est pas encore très documenté, mais je suis certain qu'elle a de quoi en séduire le plus grand nom : utilisez Kutomize avec Skaffold !
