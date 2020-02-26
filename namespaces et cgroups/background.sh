@@ -1,2 +1,2 @@
 #!/bin/bash
-apt-get update && apt-get -y install cgroup-tools
+apt-get update && sudo apt-get -y install cgroup-tools
