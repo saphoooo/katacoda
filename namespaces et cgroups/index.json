@@ -7,11 +7,11 @@
     "steps": [
       {
         "title": "Step 1",
+        "courseData": "background.sh",
         "text": "step1.md"
       }
     ],
     "intro": {
-      "courseData": "background.sh",
       "text": "intro.md"
     },
     "finish": {
