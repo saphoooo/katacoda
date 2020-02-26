@@ -74,4 +74,4 @@ Là où ça va devenir croustillant, c'est quand nous allons vouloir installer o
 apt update && apt -y install openjdk-8-jdk
 ```{{execute}}
 
-Oups, nous venons de rencontrer une erreur nos signifiant que nous manquions de mémoire : `Cannot allocate memory` ; cgroups ou coïncidence ?
+Oups, nous venons de rencontrer une erreur nous signifiant que nous manquions de mémoire : `Cannot allocate memory` ; cgroups ou coïncidence ?
