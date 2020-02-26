@@ -38,6 +38,14 @@ echo $$
 
 Commençons par nous créer un cgroup :
 
+> Normalemen la commande `cgcreate` est déjà installée, mais si ce n'est pas le cas, commencer par exécuter :
+
+```
+apt -y install cgroup-tools
+```{{execute}}
+
+Puis :
+
 ```
 cgcreate -a root -g memory:calvin
 ```{{execute}}
