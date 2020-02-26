@@ -63,7 +63,7 @@ cgexec -g memory:calvin bash
 Là où ça va devenir croustillant, c'est quand nous allons vouloir installer openjdk-8-jdk : 
 
 ```
-apt -y install openjdk-8-jdk
+apt update && apt -y install openjdk-8-jdk
 ```{{execute}}
 
 Oups, nous venons de rencontrer une erreur nos signifiant que nous manquions de mémoire : `Cannot allocate memory` ; cgroups ou coïncidence ?
