@@ -1,4 +1,4 @@
-![Hyper Singe](assets/hyper-singe3.png)
+![Hyper Singe](assets/electro-monkeys.png)
 
 ## C'est quoi Skaffold ?
 

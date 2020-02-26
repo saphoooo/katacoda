@@ -48,6 +48,7 @@ Et nous allons de ce pas l'initialiser, faisant un `skip-build` afin de pouvoir 
 ```
 skaffold init --skip-build
 ```{{execute}}
+hello wold
 
 Insérons la partie build à `skaffold.yaml` :
 
